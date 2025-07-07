@@ -25,27 +25,6 @@ $nivel_desbloqueado = $progreso ? $progreso['nivel_desbloqueado'] : 1;
   <meta charset="UTF-8">
   <title>Menú de Ejercicios</title>
   <link rel="stylesheet" href="css/styles.css">
-  <style>
-    .nivel {
-      display: inline-block;
-      margin: 10px;
-      padding: 15px 25px;
-      font-size: 18px;
-      border-radius: 8px;
-      text-decoration: none;
-      color: white;
-      background-color: #4CAF50;
-      transition: background-color 0.3s ease;
-    }
-    .nivel:hover {
-      background-color: #45a049;
-    }
-    .nivel.bloqueado {
-      background-color: #ccc;
-      pointer-events: none;
-      color: #666;
-    }
-  </style>
 </head>
 <body>
   <header class="navbar">
@@ -59,15 +38,16 @@ $nivel_desbloqueado = $progreso ? $progreso['nivel_desbloqueado'] : 1;
 
   <div class="contenedor-menu">
     <h2 class="titulo">Selecciona un nivel</h2>
-    <?php for ($i = 1; $i <= 8; $i++): ?>
-      <?php if ($i <= $nivel_desbloqueado): ?>
-        <a href="nivel.php?n=<?= $i ?>" class="nivel">Nivel <?= $i ?></a>
-      <?php else: ?>
-        <span class="nivel bloqueado">Nivel <?= $i ?></span>
-      <?php endif; ?>
-    <?php endfor; ?>
+    <div class="grid-niveles">
+      <?php for ($i = 1; $i <= 8; $i++): ?>
+        <?php if ($i <= $nivel_desbloqueado): ?>
+          <a href="#" class="nivel" data-nivel="<?= $i ?>">Nivel <?= $i ?></a>
+        <?php else: ?>
+          <span class="nivel bloqueado">Nivel <?= $i ?></span>
+        <?php endif; ?>
+      <?php endfor; ?>
+    </div>
   </div>
-  
   <script src="js/script.js"></script>
 </body>
 </html>

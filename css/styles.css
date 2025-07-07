@@ -159,3 +159,49 @@ button:hover {
   border-radius: 6px;
   cursor: pointer;
 }
+
+/* menu de niveles */
+
+.contenedor-menu {
+    max-width: 800px;
+    margin: 50px auto;
+    text-align: center;
+  }
+
+  .titulo {
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #333;
+  }
+
+  .grid-niveles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-items: center;
+  }
+
+  .nivel {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    background-color: #4CAF50;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nivel:hover {
+    background-color: #45a049;
+  }
+
+  .nivel.bloqueado {
+    background-color: #ccc;
+    pointer-events: none;
+    color: #666;
+  }
+
+ 
