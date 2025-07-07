@@ -25,9 +25,23 @@ document.addEventListener('DOMContentLoaded', () => {
     let ejerciciosHTML = '';
     ejerciciosActuales.forEach(({ a, b, resuelto }) => {
       const operacion = `${a} - ${b}`;
+      const operacionHTML = resuelto
+        ? '✔ Resuelto'
+        : `
+    <div class="resta-grid">
+      <div class="minuendo">${a.toString().padStart(3, '0')}</div>
+      <div class="sustraendo-grid">${b.toString().padStart(3, '0')}</div>
+      <div class="linea-grid"></div>
+    </div>`;
+
+
+
+
       ejerciciosHTML += `
-      <div class="ejercicio ${resuelto ? 'resuelto' : ''}" data-operacion="${operacion}" style="${resuelto ? 'background-color:#4CAF50; pointer-events:none;' : ''}">
-        ${resuelto ? '✔ Resuelto' : operacion}
+      <div class="ejercicio ${resuelto ? 'resuelto' : ''}" 
+           data-operacion="${operacion}" 
+           style="${resuelto ? 'background-color:#4CAF50; pointer-events:none;' : ''}">
+        ${operacionHTML}
       </div>`;
     });
 

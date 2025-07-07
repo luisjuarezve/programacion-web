@@ -296,7 +296,7 @@ button:hover {
 }
 
 .resta-vertical input {
-  font-size: 16px;
+  font-size: 18px;
   padding: 8px;
   width: 120px;
   text-align: right;
@@ -315,4 +315,43 @@ button:hover {
   top: -30px;
   font-size: 42px;
   color: #000;
+}
+
+/* resta menu */
+
+.resta-grid {
+  font-family: monospace;
+  font-size: 20px;
+  line-height: 1.4;
+  text-align: center;
+  position: relative;
+  color: white;
+}
+
+.resta-grid div{
+  font-size: 26px;
+}
+
+.resta-grid .minuendo {
+  padding-right: 10px;
+}
+
+.sustraendo-grid {
+  position: relative;
+  padding-right: 10px;
+}
+
+.sustraendo-grid::after {
+  content: "−";
+  position: absolute;
+  right: -15px;
+  top: -28px;
+  font-size: 36px;
+  color: white;
+}
+
+.linea-grid {
+  border-top: 2px solid white;
+  margin-top: 4px;
+  width: 100%;
 }
