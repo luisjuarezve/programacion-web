@@ -204,4 +204,115 @@ button:hover {
     color: #666;
   }
 
- 
+ /*ejercicios*/
+ .grid-ejercicios {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  justify-items: center;
+  margin-top: 30px;
+}
+
+.ejercicio {
+  background-color: #2196F3;
+  color: white;
+  padding: 20px;
+  font-size: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 160px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.ejercicio:hover {
+  transform: scale(1.05);
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+}
+
+.popup-content h3 {
+  margin-bottom: 20px;
+}
+
+.btn-volver {
+  margin-top: 30px;
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-volver:hover {
+  background-color: #d32f2f;
+}
+
+/* Resta Vertical Styles */
+.resta-vertical {
+  font-family: monospace;
+  font-size: 42px;
+  line-height: 1.4;
+  display: inline-block;
+  text-align: center;
+  padding: 20px 30px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  position: relative;
+}
+
+.resta-vertical div{
+  font-size: 42px;
+}
+
+.resta-vertical .linea {
+  border-top: 3px solid #000;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.resta-vertical input {
+  font-size: 16px;
+  padding: 8px;
+  width: 120px;
+  text-align: right;
+  border: 2px solid #999;
+  border-radius: 6px;
+}
+
+.resta-vertical .sustraendo {
+  position: relative;
+}
+
+.resta-vertical .sustraendo::after {
+  content: "−";
+  position: absolute;
+  right: -25px;
+  top: -30px;
+  font-size: 42px;
+  color: #000;
+}
