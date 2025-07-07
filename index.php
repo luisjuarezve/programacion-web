@@ -2,6 +2,15 @@
 session_start();
 require 'bdd/conexion.php';
 
+$mostrar_toast_logout = false;
+
+// Mostrar toast si la sesión fue cerrada
+if (isset($_SESSION['logout_success'])) {
+  $mostrar_toast_logout = true;
+  unset($_SESSION['logout_success']);
+}
+
+// Procesar login si se envió el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $email = $_POST['email'];
   $contrasena = $_POST['contrasena'];
@@ -23,10 +32,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           window.addEventListener("DOMContentLoaded", function() {
             const toast = document.getElementById("toast");
             toast.classList.add("show");
-            window.location.href = "menu.php";
             setTimeout(() => {
               toast.classList.remove("show");
-            }, 3000);
+              window.location.href = "menu.php";
+            }, 1000);
           });
         </script>
       ';
@@ -65,7 +74,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -73,7 +81,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <title>Login</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body class="body-form">
+  <?php if ($mostrar_toast_logout): ?>
+    <div id="toast" class="toast">
+      <span>Sesión cerrada correctamente</span>
+    </div>
+    <script>
+      window.addEventListener("DOMContentLoaded", function() {
+        const toast = document.getElementById("toast");
+        toast.classList.add("show");
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 3000);
+      });
+    </script>
+  <?php endif; ?>
+
   <form method="POST" class="formulario">
     <h2 class="titulo">Ingreso a la Plataforma</h2>
     <input type="email" name="email" placeholder="Correo electrónico" required>

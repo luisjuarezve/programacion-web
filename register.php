@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <title>Registrarse</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body class="body-form">
   <form method="POST" class="formulario">
     <h2 class="titulo">Registro Infantil</h2>
     <input type="text" name="nombre" placeholder="Nombre completo" required>

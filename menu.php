@@ -14,12 +14,21 @@ if (!isset($_SESSION['usuario'])) {
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <h2 class="titulo">Bienvenido, <?= $_SESSION['usuario']; ?> 👋</h2>
+  <header class="navbar">
+    <div class="navbar-left">👋 Bienvenido, <?= $_SESSION['usuario']; ?></div>
+    <div class="navbar-right">
+      <form method="POST" action="logout.php">
+        <button type="submit" class="cerrar-sesion">Cerrar sesión</button>
+      </form>
+    </div>
+  </header>
 
-  <div id="ejercicios-container" class="ejercicios-grid"></div>
-
-  <button id="reiniciar-btn">🔄 Reiniciar Ejercicios</button>
-
+  <div class="contenedor-menu">
+    <h2 class="titulo">Selecciona un nivel</h2>
+    /*
+      niveles
+    */
+</div>
   <script src="js/script.js"></script>
 </body>
 </html>
