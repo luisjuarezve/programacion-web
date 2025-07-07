@@ -18,6 +18,18 @@ $stmt->execute();
 $result = $stmt->get_result();
 $progreso = $result->fetch_assoc();
 $nivel_desbloqueado = $progreso ? $progreso['nivel_desbloqueado'] : 1;
+
+// Obtener el nivel desbloqueado actualizado del usuario (por si se actualizó en JS)
+if (isset($_POST['nivel_desbloqueado'])) {
+  $nuevo_nivel = intval($_POST['nivel_desbloqueado']);
+  if ($nuevo_nivel > $nivel_desbloqueado) {
+    // Actualizar en la base de datos
+    $stmt = $conn->prepare("UPDATE progreso_niveles SET nivel_desbloqueado = ? WHERE usuario_id = ?");
+    $stmt->bind_param("ii", $nuevo_nivel, $usuario_id);
+    $stmt->execute();
+    $nivel_desbloqueado = $nuevo_nivel;
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,7 +42,9 @@ $nivel_desbloqueado = $progreso ? $progreso['nivel_desbloqueado'] : 1;
   <header class="navbar">
     <div class="navbar-left">👋 Bienvenido, <?= htmlspecialchars($nombre_usuario); ?></div>
     <div class="navbar-right">
-      <form method="POST" action="logout.php">
+      <form method="POST" action="logout.php" id="logoutForm">
+        <input type="hidden" name="nivel_desbloqueado" id="nivelDesbloqueadoInput" value="<?= $nivel_desbloqueado ?>">
+        <input type="hidden" name="respuestas" id="respuestasInput">
         <button type="submit" class="cerrar-sesion">Cerrar sesión</button>
       </form>
     </div>
