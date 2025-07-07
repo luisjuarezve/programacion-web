@@ -128,3 +128,55 @@ button:hover {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* menu principal styles */
+.ejercicios-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin: 30px;
+}
+
+.ejercicio {
+  background: #f0f8ff;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.ejercicio:hover {
+  transform: scale(1.05);
+}
+
+.ejercicio.expandido {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  max-width: 400px;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background: #fff;
+  padding: 40px;
+}
+
+.correcto {
+  border-color: #4CAF50;
+  background-color: #e7f8e7;
+}
+
+.incorrecto {
+  border-color: #f44336;
+  background-color: #ffe7e7;
+}
+
+#reiniciar-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}

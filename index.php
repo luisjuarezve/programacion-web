@@ -18,12 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       echo '
         <div id="toast" class="toast">
           <span>Bienvenido, ' . $usuario['nombre'] . '</span>
-          // Redirigiendo a la página principal...
         </div>
         <script>
           window.addEventListener("DOMContentLoaded", function() {
             const toast = document.getElementById("toast");
             toast.classList.add("show");
+            window.location.href = "menu.php";
             setTimeout(() => {
               toast.classList.remove("show");
             }, 3000);
