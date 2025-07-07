@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $email = $_POST['email'];
   $contrasena = $_POST['contrasena'];
 
-  $stmt = $conn->prepare("SELECT id, nombre, contrasena FROM usuarios WHERE email = ?");
+  $stmt = $conn->prepare("SELECT id, nombre, email, contrasena FROM usuarios WHERE email = ?");
   $stmt->bind_param("s", $email);
   $stmt->execute();
   $resultado = $stmt->get_result();
@@ -24,9 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario = $resultado->fetch_assoc();
     if (password_verify($contrasena, $usuario['contrasena'])) {
       $_SESSION['usuario'] = $usuario['nombre'];
+      $_SESSION['usuario_id'] = $usuario['id'];
+
       echo '
         <div id="toast" class="toast">
-          <span>Bienvenido, ' . $usuario['nombre'] . '</span>
+          <span>Bienvenido, ' . htmlspecialchars($usuario['nombre']) . '</span>
         </div>
         <script>
           window.addEventListener("DOMContentLoaded", function() {
@@ -106,7 +108,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ¿No tienes una cuenta?
         <a href="register.php" style="color: #4F88FF; font-weight: bold;">Regístrate aquí</a>
     </p>
-
   </form>
 </body>
 </html>
