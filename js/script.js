@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const contenedor = document.querySelector('.contenedor-menu');
+  let ejerciciosActuales = [];
 
   // Delegación de eventos para niveles
   contenedor.addEventListener('click', function (e) {
@@ -10,13 +11,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  function mostrarEjercicios(nivel) {
-    let ejerciciosHTML = '';
-    for (let i = 1; i <= 8; i++) {
-      const a = Math.floor(Math.random() * 50) + 20;
-      const b = Math.floor(Math.random() * 20);
-      ejerciciosHTML += `<div class="ejercicio" data-operacion="${a} - ${b}">${a} - ${b}</div>`;
+  function mostrarEjercicios(nivel, reiniciar = false) {
+    if (!reiniciar || ejerciciosActuales.length === 0) {
+      // Generar nuevos ejercicios solo si no estamos reiniciando
+      ejerciciosActuales = [];
+      for (let i = 1; i <= 8; i++) {
+        const a = Math.floor(Math.random() * 50) + 20;
+        const b = Math.floor(Math.random() * 20);
+        ejerciciosActuales.push({ a, b, resuelto: false });
+      }
     }
+
+    let ejerciciosHTML = '';
+    ejerciciosActuales.forEach(({ a, b, resuelto }) => {
+      const operacion = `${a} - ${b}`;
+      ejerciciosHTML += `
+      <div class="ejercicio ${resuelto ? 'resuelto' : ''}" data-operacion="${operacion}" style="${resuelto ? 'background-color:#4CAF50; pointer-events:none;' : ''}">
+        ${resuelto ? '✔ Resuelto' : operacion}
+      </div>`;
+    });
 
     contenedor.innerHTML = `
     <h2 class="titulo">Nivel ${nivel} - Resta</h2>
@@ -35,14 +48,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.querySelector('.btn-volver-menu').addEventListener('click', () => {
-      location.reload(); // o puedes reconstruir el menú con JS si prefieres no recargar
+      location.reload();
     });
 
     document.querySelector('.btn-reiniciar-nivel').addEventListener('click', e => {
       const nivelActual = e.target.dataset.nivel;
-      mostrarEjercicios(nivelActual);
+      // Reiniciar sin generar nuevos ejercicios
+      ejerciciosActuales.forEach(ej => ej.resuelto = false);
+      mostrarEjercicios(nivelActual, true);
     });
   }
+
 
   function mostrarPopup(operacion) {
     const [a, b] = operacion.split(' - ').map(Number);
@@ -78,6 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
         feedback.textContent = '✅ ¡Correcto!';
         feedback.style.color = 'green';
 
+        ejerciciosActuales.forEach(ej => {
+          if (`${ej.a} - ${ej.b}` === operacion) {
+            ej.resuelto = true;
+          }
+        });
+
         const ejercicios = document.querySelectorAll('.ejercicio');
         ejercicios.forEach(ej => {
           if (ej.dataset.operacion === operacion) {
@@ -88,7 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         setTimeout(() => overlay.remove(), 1000);
-      } else {
+      }
+      else {
         feedback.textContent = '❌ Incorrecto. Intenta de nuevo.';
         feedback.style.color = 'red';
       }
