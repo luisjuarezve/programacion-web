@@ -7,11 +7,18 @@
   font-size: 16px;
 }
 
+body {
+  color: #333;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 /* General Styles */
 .body-form {
   display: flex;
-  font-family: 'Comic Sans MS', cursive;
-  background-color: #F5F9FF;
+  background-image: url('../img/BG.png');
+  background-size: cover;
   background-position: center;
   color: #333;
   justify-content: center;
@@ -20,13 +27,7 @@
 }
 
 
-body {
-  color: #333;
-  background-image: url('../img/BG.png');
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+
 
 .formulario {
   background-color: #FFFFFF;
