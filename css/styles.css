@@ -12,16 +12,17 @@
   display: flex;
   font-family: 'Comic Sans MS', cursive;
   background-color: #F5F9FF;
+  background-position: center;
   color: #333;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
+
 body {
-  font-family: 'Comic Sans MS', cursive;
-  background-color: #F5F9FF;
   color: #333;
+  background-image: url('../img/BG.png');
   justify-content: center;
   align-items: center;
   height: 100vh;
