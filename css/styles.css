@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial Rounded MT Bold', sans-serif;
+  font-family: 'comic sans ms', sans-serif;
   font-size: 16px;
 }
 
@@ -26,27 +26,17 @@ body {
   height: 100vh;
 }
 
-
-
-
 .formulario {
-  background-color: #FFFFFF;
-  padding: 20px;
+  background-image: url('../img/formulario.png');
+  background-position: center;
+  background-size: 450px 520px;
+  padding: 240px 60px 20px 60px;
   border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 350px;
-}
-
-.titulo{
-  text-align: center;
-  font-size: 24px;
-  color: #072c7c;
-  margin-bottom: 20px;
-  text-align: center;
-  
+  width: 450px;
+  height: 520px;
 }
 
 input {
@@ -55,20 +45,31 @@ input {
   border-radius: 6px;
 }
 
-button {
-  background-color: #4F88FF;
+.button-form {
+  background-image: url('../img/btn\ normal.png');
+  background-position: center;
+  background-size: 240px 40px;
+  background-color: transparent;
+  background-repeat: no-repeat;
   color: white;
   border: none;
   padding: 10px;
-  border-radius: 6px;
   cursor: pointer;
+  font-family: 'comic sans ms', sans-serif;
 }
 
-button:hover {
-  background-color: #3B70E0;
+.button-form:hover {
+  background-image: url('../img/btn\ hover.png');
+  background-position: center;
+  background-size: 240px 40px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  margin-right: 2px;
+  padding: 9px;
+  font-size: 18px;
 }
 
-.button-regresar {
+.button-back {
   background-color: #e93232;
   color: rgba(255, 255, 255, 0.938);
   border: none;
