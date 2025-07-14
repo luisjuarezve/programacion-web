@@ -131,6 +131,116 @@ input {
   font-size: 18px;
 }
 
+.btn-reiniciar {
+  background-image: url('../img/btn\ cancel.png');
+  background-position: center;
+  background-size: 200px 40px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-align: center;
+  text-decoration: none;
+  width: 200px;
+  height: 40px;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-family: 'comic sans ms', sans-serif;
+}
+
+.btn-reiniciar:hover {
+  background-image: url('../img/btn\ exit.png');
+  background-position: center;
+  background-size: 200px 40px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 40px;
+  padding: 8px;
+  font-size: 18px;
+}
+
+.btn-anterior {
+  background-image: url('../img/btn-back.png');
+  background-position: center;
+  background-size: 40px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-align: center;
+  text-decoration: none;
+  width: 40px;
+  height: 40px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-family: 'comic sans ms', sans-serif;
+}
+
+.btn-anterior:hover {
+  background-image: url('../img/btn-back-hover.png');
+  background-position: center;
+  background-size: 40px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+}
+
+.btn-siguiente {
+  background-image: url('../img/btn-siguiente.png');
+  background-position: center;
+  background-size: 40px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-align: center;
+  text-decoration: none;
+  width: 40px;
+  height: 40px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-family: 'comic sans ms', sans-serif;
+}
+
+.btn-siguiente:hover {
+  background-image: url('../img/btn-siguiente-hover.png');
+  background-position: center;
+  background-size: 40px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+}
+
+.btn-reiniciar {
+  background-image: url('../img/btn-reiniciar.png');
+  background-position: center;
+  background-size: 40px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-align: center;
+  text-decoration: none;
+  width: 40px;
+  height: 40px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-family: 'comic sans ms', sans-serif;
+}
+
+.btn-reiniciar:hover {
+  background-image: url('../img/btn-reiniciar-hover.png');
+  background-position: center;
+  background-size: 40px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+}
+
 /* Toast Notification Styles */
 .toast {
   visibility: hidden;
@@ -240,7 +350,9 @@ input {
 }
 
 .ejercicio {
-  background-color: #2196F3;
+  background-image: url('../img/ejercicio-grid.png');
+  background-position: center;
+  background-size: cover;
   color: white;
   padding: 40px 12px;
   font-size: 16px;
@@ -360,11 +472,13 @@ input {
 
 .resta-grid .minuendo {
   padding-right: 10px;
+  color: #333;
 }
 
 .sustraendo-grid {
   position: relative;
   padding-right: 10px;
+  color: #333;
 }
 
 .sustraendo-grid::after {
@@ -373,11 +487,11 @@ input {
   top: -28px;
   right: 0px;
   font-size: 36px;
-  color: white;
+  color: #333;
 }
 
 .linea-grid {
-  border-top: 2px solid white;
+  border-top: 2px solid #333;
   margin-top: 4px;
   width: 100%;
 }
