@@ -88,7 +88,7 @@ function mostrarEjercicios(reiniciar = false, pagina = 0) {
         <div class=\"ejercicio ${resuelto ? 'resuelto' : ''}\" 
              data-operacion=\"${operacion}\" 
              data-pregunta-idx=\"${preguntaIdx}\"
-             style=\"${resuelto ? 'background-color:#4CAF50; color:white; pointer-events:none; padding: 10px 12px;;' : ''}\">
+             style=\"${resuelto ? 'background-color:#4CAF50; color:#333; pointer-events:none; padding: 10px 12px;;' : ''}\">
           ${operacionHTML}
         </div>`;
     });
