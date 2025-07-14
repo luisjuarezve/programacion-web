@@ -1,3 +1,47 @@
+/* Estilos para los dígitos del popup de respuesta */
+.digitos-respuesta {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 10px;
+}
+.digito {
+  display: inline-flex;
+  width: 38px;
+  height: 48px;
+  font-size: 42px;
+  font-family: monospace;
+  background: #e3e3e3;
+  color: #222;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  border: 2px solid #bbb;
+  transition: background 0.15s, border 0.15s;
+}
+.digito:hover {
+  background: #d1eaff;
+  border: 2px solid #2196F3;
+}
+.btn-reiniciar-digitos {
+  font-size: 24px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: none;
+  background: #aaa;
+  color: #fff;
+  margin-top: 8px;
+  margin-bottom: 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-reiniciar-digitos:hover {
+  background: #888;
+}
+@import url('popup.css');
+
 /* Reset some default styles */
 * {
   margin: 0;
@@ -210,7 +254,7 @@ input {
   cursor: pointer;
 }
 
-/* menu de niveles */
+/* Contenedor principal del menú de ejercicios */
 .body-menu {
   background-image: url('../img/BG.png');
   background-size: cover;
@@ -229,36 +273,6 @@ input {
   color: #333;
 }
 
-.grid-niveles {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  justify-items: center;
-}
-
-.nivel {
-  display: inline-block;
-  padding: 15px 25px;
-  font-size: 18px;
-  border-radius: 8px;
-  text-decoration: none;
-  color: white;
-  background-color: #4CAF50;
-  transition: background-color 0.3s ease;
-  width: 100%;
-  text-align: center;
-}
-
-.nivel:hover {
-  background-color: #45a049;
-}
-
-.nivel.bloqueado {
-  background-color: #ccc;
-  pointer-events: none;
-  color: #666;
-}
-
 /*ejercicios*/
 .grid-ejercicios {
   display: grid;
@@ -271,14 +285,13 @@ input {
 .ejercicio {
   background-color: #2196F3;
   color: white;
-  padding: 20px;
-  font-size: 20px;
+  padding: 12px;
+  font-size: 16px;
   border-radius: 8px;
   cursor: pointer;
   width: 100%;
-  max-width: 160px;
-  text-align: center;
-  transition: transform 0.2s;
+  max-width: 120px;
+  min-height: 170px;
 }
 
 .ejercicio:hover {
@@ -366,7 +379,7 @@ input {
 .resta-vertical .sustraendo::after {
   content: "−";
   position: absolute;
-  right: -25px;
+  right: -10px;
   top: -30px;
   font-size: 42px;
   color: #000;
@@ -399,8 +412,8 @@ input {
 .sustraendo-grid::after {
   content: "−";
   position: absolute;
-  right: -15px;
   top: -28px;
+  right: 0px;
   font-size: 36px;
   color: white;
 }

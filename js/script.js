@@ -93,8 +93,8 @@ function mostrarEjercicios(reiniciar = false, pagina = 0) {
         </div>`;
     });
     let paginacionHTML = '<div style="margin-top: 40px;">';
-    paginacionHTML += '<button class="btn-reiniciar">🔄 Reiniciar Ejercicios</button>';
     if (paginaActual > 0) paginacionHTML += '<button class="btn-anterior">anterior</button>';
+    paginacionHTML += '<button class="btn-reiniciar">🔄 Reiniciar Ejercicios</button>';
     if (paginaActual < 2) paginacionHTML += '<button class="btn-siguiente">siguiente</button>';
     paginacionHTML += '</div>';
     contenedor.innerHTML = `
@@ -152,7 +152,12 @@ function mostrarPopup(operacion) {
         <div>${a.toString().padStart(3, '0')}</div>
         <div class="sustraendo">${b.toString().padStart(3, '0')}</div>
         <div class="linea"></div>
-        <input type="number" id="respuesta" placeholder="Resultado">
+        <div class="digitos-respuesta" style="display:flex;gap:8px;justify-content:center;margin-top:10px;">
+          <span class="digito" data-pos="0">0</span>
+          <span class="digito" data-pos="1">0</span>
+          <span class="digito" data-pos="2">0</span>
+        </div>
+        <button class="btn-reiniciar-digitos" style="margin-top:10px;">Reiniciar</button>
       </div>
       <div style="margin-top: 20px;">
         <button class="btn-validar">Validar</button>
@@ -165,11 +170,25 @@ function mostrarPopup(operacion) {
   document.body.appendChild(overlay);
   // No quitar la clase 'popup-abrir', dejar que la animación ocurra normalmente
 
-  const input = overlay.querySelector('#respuesta');
   const feedback = overlay.querySelector('#feedback');
+  const digitos = Array.from(overlay.querySelectorAll('.digito'));
+  const btnReiniciarDigitos = overlay.querySelector('.btn-reiniciar-digitos');
+
+  // Manejo de click en los dígitos
+  digitos.forEach((span, idx) => {
+    span.addEventListener('click', () => {
+      let val = parseInt(span.textContent);
+      val = (val + 1) % 10;
+      span.textContent = val;
+    });
+  });
+  btnReiniciarDigitos.addEventListener('click', () => {
+    digitos.forEach(span => span.textContent = '0');
+  });
 
   overlay.querySelector('.btn-validar').addEventListener('click', () => {
-    const respuestaUsuario = parseInt(input.value);
+    // Obtener el número formado por los 3 dígitos
+    const respuestaUsuario = parseInt(digitos.map(d => d.textContent).join(''));
     if (respuestaUsuario === resultadoCorrecto) {
       feedback.textContent = '✅ ¡Correcto!';
       feedback.style.color = 'green';
@@ -208,56 +227,8 @@ function mostrarPopup(operacion) {
           }, 350);
         }
       });
-  // Agregar estilos para la animación si no existen
-  if (!document.getElementById('popup-cerrar-style')) {
-    const style = document.createElement('style');
-    style.id = 'popup-cerrar-style';
-    style.textContent = `
-      .popup-abrir {
-        animation: popupFadeIn 0.35s;
-      }
-      .popup-cerrar {
-        animation: popupFadeOut 0.35s forwards;
-      }
-      @keyframes popupFadeIn {
-        0% { opacity: 0; transform: scale(0.85); }
-        100% { opacity: 1; transform: scale(1); }
-      }
-      @keyframes popupFadeOut {
-        0% { opacity: 1; transform: scale(1); }
-        100% { opacity: 0; transform: scale(0.85); }
-      }
-    `;
-    document.head.appendChild(style);
-  }
     } else {
-      // Guardar respuesta incorrecta
-      ejerciciosActuales.forEach(ej => {
-        if (`${ej.a} - ${ej.b}` === operacion) {
-          window.respuestasUsuario = window.respuestasUsuario.filter(r => r.pregunta_id !== ej.pregunta_id);
-          fetch('guardar_respuestas.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              respuestas: [{
-                pregunta_id: ej.pregunta_id,
-                a: ej.a,
-                b: ej.b,
-                respuesta: respuestaUsuario,
-                correcta: false
-              }]
-            })
-          });
-          window.respuestasUsuario.push({
-            pregunta_id: ej.pregunta_id,
-            a: ej.a,
-            b: ej.b,
-            respuesta: respuestaUsuario,
-            correcta: false
-          });
-          mostrarEjercicios(false, paginaActual);
-        }
-      });
+      // No guardar respuestas incorrectas, solo mostrar feedback
       feedback.textContent = '❌ Incorrecto. Intenta de nuevo.';
       feedback.style.color = 'red';
     }
@@ -265,7 +236,10 @@ function mostrarPopup(operacion) {
 
   overlay.addEventListener('click', e => {
     if (e.target === overlay || e.target.classList.contains('btn-volver')) {
-      overlay.remove();
+      overlay.classList.add('popup-cerrar');
+      setTimeout(() => {
+        overlay.remove();
+      }, 350);
     }
   });
 
@@ -273,7 +247,12 @@ function mostrarPopup(operacion) {
   const logoutForm = document.getElementById('logoutForm');
   if (logoutForm) {
     logoutForm.addEventListener('submit', function (e) {
-      document.getElementById('respuestasInput').value = JSON.stringify(window.respuestasUsuario || []);
+      // Asegurar que todas las respuestas sean string y no null
+      const respuestasSanitizadas = (window.respuestasUsuario || []).map(r => ({
+        ...r,
+        respuesta: (r.respuesta === undefined || r.respuesta === null) ? '' : String(r.respuesta)
+      }));
+      document.getElementById('respuestasInput').value = JSON.stringify(respuestasSanitizadas);
     });
   }
 

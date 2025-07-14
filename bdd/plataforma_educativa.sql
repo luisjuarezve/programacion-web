@@ -16,21 +16,12 @@ CREATE TABLE IF NOT EXISTS usuarios (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Crear la tabla progreso_niveles
-CREATE TABLE IF NOT EXISTS progreso_niveles (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  usuario_id INT(11) NOT NULL,
-  nivel_desbloqueado INT(11) NOT NULL DEFAULT 1,
-  fecha_actualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Crear la tabla respuestas_usuarios
+
+-- Crear la tabla respuestas_usuarios (sin niveles)
 CREATE TABLE IF NOT EXISTS respuestas_usuarios (
   id INT(11) NOT NULL AUTO_INCREMENT,
   usuario_id INT(11) NOT NULL,
-  nivel INT(11) NOT NULL,
   pregunta_id INT(11) NOT NULL,
   a INT(11) NOT NULL,
   b INT(11) NOT NULL,
@@ -42,6 +33,6 @@ CREATE TABLE IF NOT EXISTS respuestas_usuarios (
   -- Puedes agregar FOREIGN KEY para pregunta_id si tienes una tabla de preguntas
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Índice único para evitar duplicados y permitir actualizar respuestas
+-- Índice único para evitar duplicados y permitir actualizar respuestas (sin nivel)
 ALTER TABLE respuestas_usuarios
-  ADD UNIQUE KEY unique_respuesta (usuario_id, nivel, pregunta_id);
+  ADD UNIQUE KEY unique_respuesta (usuario_id, pregunta_id);
