@@ -92,11 +92,14 @@ function mostrarEjercicios(reiniciar = false, pagina = 0) {
           ${operacionHTML}
         </div>`;
     });
-    let paginacionHTML = '<div style="margin-top: 40px; align-items: center; display: flex; justify-content: center; gap: 10px;">';
-    if (paginaActual > 0) paginacionHTML += '<button class="btn-anterior"></button>';
-    paginacionHTML += '<button class="btn-reiniciar"></button>';
-    if (paginaActual < 2) paginacionHTML += '<button class="btn-siguiente"></button>';
-    paginacionHTML += '</div>';
+    // Cambiar la generación de paginacionHTML para centrar el botón reiniciar
+    let paginacionHTML = `
+      <div class="paginacion-flex">
+        <div class="paginacion-btn paginacion-anterior">${paginaActual > 0 ? '<button class="btn-anterior"></button>' : ''}</div>
+        <div class="paginacion-btn paginacion-reiniciar"><button class="btn-reiniciar"></button></div>
+        <div class="paginacion-btn paginacion-siguiente">${paginaActual < 2 ? '<button class="btn-siguiente"></button>' : ''}</div>
+      </div>
+    `;
     contenedor.innerHTML = `
       <h2 class="titulo">Ejercicios de Resta</h2>
       <div class="grid-ejercicios">${ejerciciosHTML}</div>

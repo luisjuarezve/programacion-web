@@ -541,3 +541,23 @@ input {
 .btn-reiniciar-digitos:hover {
   background: #888 !important;
 }
+
+.paginacion-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Reducido a 10px */
+  margin-top: 40px;
+}
+.paginacion-btn {
+  flex: 0 0 auto; /* Solo ocupa el espacio del botón */
+  display: flex;
+  justify-content: center;
+  min-width: 40px; /* Ajusta este valor al ancho real de tus botones */
+}
+.paginacion-btn:empty {
+  min-width: 40px; /* Asegura el espacio aunque esté vacío */
+}
+.paginacion-reiniciar {
+  flex: 0 0 auto;
+}
