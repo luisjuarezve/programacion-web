@@ -8,17 +8,10 @@ if (!isset($_SESSION['usuario_id'])) {
     exit;
 }
 
-$data = json_decode(file_get_contents('php://input'), true);
+
 $usuario_id = $_SESSION['usuario_id'];
-$nivel = isset($data['nivel']) ? intval($data['nivel']) : null;
-
-if ($nivel === null) {
-    echo json_encode(['error' => 'Nivel no especificado']);
-    exit;
-}
-
-$stmt = $conn->prepare("DELETE FROM respuestas_usuarios WHERE usuario_id = ? AND nivel = ?");
-$stmt->bind_param("ii", $usuario_id, $nivel);
+$stmt = $conn->prepare("DELETE FROM respuestas_usuarios WHERE usuario_id = ?");
+$stmt->bind_param("i", $usuario_id);
 $stmt->execute();
 
 if ($stmt->affected_rows >= 0) {
