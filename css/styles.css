@@ -31,14 +31,14 @@ body {
 .formulario-login {
   background-image: url('../img/formulario.png');
   background-position: center;
-  background-size: 450px 520px;
-  padding: 235px 60px 20px 60px;
+  background-size: 450px 580px;
+  padding: 265px 60px 20px 60px;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 450px;
-  height: 520px;
+  height: 580px;
 }
 
 input {
@@ -66,6 +66,7 @@ input {
   background-size: 200px 40px;
   background-color: transparent;
   background-repeat: no-repeat;
+  margin-bottom: -1px;
   margin-right: 2px;
   padding: 9px;
   font-size: 18px;
@@ -99,6 +100,28 @@ input {
   height: 40px;
   font-size: 18px;
   background-size: 150px 40px;
+}
+
+.formulario-registro .center .btn-small:hover {
+  width: 150px;
+  height: 40px;
+  font-size: 18px;
+  background-size: 150px 40px;
+  margin-right: 0px;
+}
+
+/* Formulario recuperar */
+.formulario-recuperar {
+  background-image: url('../img/Recuperar.png');
+  background-position: center;
+  background-size: 450px 420px;
+  padding: 205px 60px 20px 60px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 450px;
+  height: 420px;
 }
 
 .button-regresar {

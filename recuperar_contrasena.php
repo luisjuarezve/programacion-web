@@ -132,26 +132,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body class="body-form">
   <?= $alerta_js ?>
-
   <div id="mensaje-modal" class="modal">
     <div class="modal-contenido">
       <p id="mensaje-texto"></p>
       <button onclick="cerrarModal()">Aceptar</button>
     </div>
   </div>
-
-  <form method="POST" class="formulario-login">
-    <img src="img/Recupera.png" alt="Recuperar" style="width: 100%; max-width: 380px; display: block; margin: 0 auto 10px;">
+  <form method="POST" class="formulario-recuperar">
     <input type="email" name="email" placeholder="Ingresa tu correo" required>
     <button class="button-submit" type="submit">Enviar instrucciones</button>
-
     <p style="text-align: center; margin-top: 10px;">
       <a href="index.php" style="color: #4F88FF; font-weight: bold;">
         ← Volver al inicio de sesión
       </a>
     </p>
   </form>
-
   <script>
     function mostrarModal(texto) {
       document.getElementById("mensaje-texto").innerText = texto;
