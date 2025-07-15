@@ -526,21 +526,34 @@ input {
   background: #d1eaff;
   border: 2px solid #2196F3;
 }
-.btn-reiniciar-digitos {
-  font-size: 24px !important;
-  padding: 4px 12px !important;
-  border-radius: 6px !important;
-  border: none !important;
-  background: #aaa !important;
-  color: #fff !important;
-  margin-top: 8px !important;
-  margin-bottom: 0 !important;
-  cursor: pointer !important;
-  transition: background 0.2s !important;
+.popup-content button.btn-reiniciar-digitos {
+  background-image: url("../img/Refresh-numeros.png");  
+  background-size: 64px 64px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  width: 68px;
+  height: 68px;
+  padding: 0;
+  margin-top: 8px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.3s ease;
 }
-.btn-reiniciar-digitos:hover {
-  background: #888 !important;
+
+/* Efecto rebote al pasar el mouse */
+.popup-content button.btn-reiniciar-digitos:hover {
+  animation: botBounce 0.3s ease-in-out;
 }
+
+/* Reutilizando la animación que ya tienes */
+@keyframes botBounce {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
 
 .paginacion-flex {
   display: flex;

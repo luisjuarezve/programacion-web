@@ -160,11 +160,11 @@ function mostrarPopup(operacion) {
           <span class="digito" data-pos="1">0</span>
           <span class="digito" data-pos="2">0</span>
         </div>
-        <button class="btn-reiniciar-digitos" style="margin-top:10px;">Reiniciar</button>
+        <button class="btn-reiniciar-digitos" style="margin-top:10px;"></button>
       </div>
       <div style="margin-top: 20px;">
-        <button class="btn-validar">Validar</button>
-        <button class="btn-volver">Volver</button>
+        <button class="btn-validar"></button>
+        <button class="btn-volver"></button>
       </div>
       <div id="feedback" style="margin-top: 15px; font-weight: bold;"></div>
     </div>
