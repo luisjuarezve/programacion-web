@@ -68,8 +68,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </script>";
 
         // 🚀 Redirigir al verificador
-        header("Location: verificar_codigo.php?email=" . urlencode($email));
-        exit;
+        // header("Location: verificar_codigo.php?email=" . urlencode($email));
+        // exit;
 
       } catch (Exception $e) {
         $errorMsg = addslashes($mail->ErrorInfo . ' | Exception: ' . $e->getMessage());
@@ -171,6 +171,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     function cerrarModal() {
       document.getElementById("mensaje-modal").style.display = "none";
+      // Redirigir al verificador con el email
+      <?php if (!empty($email) && isset($usuario)) : ?>
+        window.location.href = "verificar_codigo.php?email=<?= urlencode($email) ?>";
+      <?php endif; ?>
     }
   </script>
 </body>
