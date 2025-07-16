@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     function cerrarModal() {
       document.getElementById("mensaje-modal").style.display = "none";
       <?php if ($codigo_valido && !empty($codigo)): ?>
-        window.location.href = "restablecer_contrasena.php?token=<?= urlencode($codigo) ?>";
+        window.location.href = "resetear.php?token=<?= urlencode($codigo) ?>";
       <?php endif; ?>
     }
   </script>
