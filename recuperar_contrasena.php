@@ -10,7 +10,8 @@ require 'libs/PHPMailer/src/Exception.php';
 $token_generado = '';
 $alerta_js = '';
 
-function generarToken($longitud = 32) {
+function generarToken($longitud = 32)
+{
   return bin2hex(random_bytes($longitud / 2));
 }
 
@@ -18,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $email = trim($_POST['email'] ?? '');
 
   if (!empty($email)) {
+    // Verificar usuario
     $stmt = $conn->prepare("SELECT id FROM usuarios WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -28,32 +30,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $token_generado = generarToken();
       $expira = date("Y-m-d H:i:s", strtotime("+1 hour"));
 
-      // Guardar en base de datos
-      $stmt = $conn->prepare("UPDATE usuarios SET token_recuperacion = ?, token_expira = ? WHERE id = ?");
-      $stmt->bind_param("ssi", $token_generado, $expira, $usuario['id']);
+      // Guardar en recuperaciones_contrasena
+      $stmt = $conn->prepare("INSERT INTO recuperaciones_contrasena (usuario_id, token, expira) VALUES (?, ?, ?)");
+      $stmt->bind_param("iss", $usuario['id'], $token_generado, $expira);
       $stmt->execute();
 
       // Enviar correo con PHPMailer
       $mail = new PHPMailer(true);
 
       try {
-        $mail->SMTPDebug = 2; // Modo debug para ver el log SMTP
-        $mail->Debugoutput = 'html';
+        $mail->SMTPDebug = 0;
         $mail->isSMTP();
-        $mail->Host       = 'smtp.mailpro.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'VE257211@smtp.mailpro.com'; // Tu correo Mailpro
-        $mail->Password   = '1#V8pu@5L3pY'; // Tu contraseña SMTP
-        $mail->SMTPSecure = 'tls';
-        $mail->Port       = 587;
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'sistemavu1@gmail.com';
+        $mail->Password = 'lmzculazogabbsqb'; // contraseña de aplicación
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port = 465;
 
-        // El remitente es tu correo Mailpro
-        $mail->setFrom('VE257211@smtp.mailpro.com', 'Soporte Infantil');
+        $mail->setFrom('sistemavu1@gmail.com', 'Soporte Infantil');
         $mail->addAddress($email);
-
         $mail->isHTML(true);
         $mail->Subject = 'Tu código mágico de recuperación';
-        $mail->Body    = "
+        $mail->Body = "
           <h3>¡Hola! 😊</h3>
           <p>Este es tu código para recuperar tu contraseña:</p>
           <h2 style='color: #4F88FF;'>$token_generado</h2>
@@ -67,6 +66,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mostrarModal('¡Listo! Revisa tu correo para recuperar tu contraseña');
           };
         </script>";
+
+        // 🚀 Redirigir al verificador
+        header("Location: verificar_codigo.php?email=" . urlencode($email));
+        exit;
+
       } catch (Exception $e) {
         $errorMsg = addslashes($mail->ErrorInfo . ' | Exception: ' . $e->getMessage());
         $alerta_js = "<script>
@@ -85,8 +89,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>Recuperar contraseña</title>
@@ -94,7 +100,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <style>
     .modal {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       background-color: rgba(0, 0, 0, 0.4);
       display: none;
       justify-content: center;
@@ -124,8 +133,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     @keyframes aparecer {
-      from { opacity: 0; transform: scale(0.9); }
-      to   { opacity: 1; transform: scale(1); }
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
   </style>
 </head>
@@ -158,4 +174,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
   </script>
 </body>
+
 </html>

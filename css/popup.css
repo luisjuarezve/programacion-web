@@ -28,13 +28,10 @@
   background: transparent;
   background-image: url('../img/popup.png');
   background-position: center;
-  background-size: cover;
+  background-repeat: no-repeat;
   border-radius: 12px;
-  padding: 32px 28px 24px 28px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-  min-width: 320px;
-  max-width: 95vw;
-  min-height: 180px;
+  width: 500px;
+  height: 630px;
   position: relative;
   text-align: center;
 }
@@ -76,12 +73,12 @@
 /* Botón Validar */
 .popup-content button.btn-validar {
   background-image: url("../img/Validar.png");
-  background-size: 70px 70px;
+  background-size: 40px 40px;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  width: 72px;
-  height: 72px;
+  width: 40px;
+  height: 40px;
   padding: 0;
   margin: 0 8px;
   border: none;
@@ -91,7 +88,7 @@
 .popup-content button.btn-validar:hover {
   animation: botBounce 0.3s ease-in-out;
   background-image: url("../img/Validar.png");
-  background-size: 70px 70px;
+  background-size: 40px 40px;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
@@ -100,12 +97,12 @@
 /* Botón Volver */
 .popup-content button.btn-volver {
   background-image: url("../img/Volver.png");
-  background-size: 70px 70px;
+  background-size: 40px 40px;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  width: 72px;
-  height: 72px;
+  width: 40px;
+  height: 40px;
   padding: 0;
   margin: 0 8px;
   border: none;
@@ -115,7 +112,7 @@
 .popup-content button.btn-volver:hover {
   animation: botBounce 0.3s ease-in-out;
   background-image: url("../img/Volver.png");
-  background-size: 70px 70px;
+  background-size: 40px 40px;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;

@@ -162,11 +162,11 @@ function mostrarPopup(operacion) {
         </div>
         <button class="btn-reiniciar-digitos" style="margin-top:10px;"></button>
       </div>
-      <div style="margin-top: 20px;">
+      <div style="margin-top: 10px;">
         <button class="btn-validar"></button>
         <button class="btn-volver"></button>
       </div>
-      <div id="feedback" style="margin-top: 15px; font-weight: bold;"></div>
+      <div id="feedback" style="margin-top: 5px; font-weight: bold;"></div>
     </div>
   `;
 
