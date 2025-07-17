@@ -51,7 +51,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->setFrom('sistemavu1@gmail.com', 'Soporte Infantil');
         $mail->addAddress($email);
         $mail->isHTML(true);
-        $mail->Subject = 'Tu código mágico de recuperación';
+        $mail->CharSet = 'UTF-8'; // <-- Agrega esta línea
+
+        $mail->Subject = 'Tu código mágico de recuperación ✨';
         $mail->Body = "
           <h3>¡Hola! 😊</h3>
           <p>Este es tu código para recuperar tu contraseña:</p>

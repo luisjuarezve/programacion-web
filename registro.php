@@ -12,7 +12,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $contrasena = $_POST['contrasena'];
   $confirmar = $_POST['confirmar'];
 
-  if ($contrasena !== $confirmar) {
+  // Validar longitud mínima
+  if (strlen($contrasena) < 6) {
+    $mensaje = '
+      <div id="toast-error" class="toast-error">
+        <span>La contraseña debe tener al menos 6 caracteres.</span>
+      </div>
+    ';
+  } elseif ($contrasena !== $confirmar) {
     $mensaje = '
       <div id="toast-error" class="toast-error">
         <span>Las contraseñas no coinciden. Por favor, intenta de nuevo.</span>
