@@ -1,8 +1,8 @@
-CREATE DATABASE IF NOT EXISTS plataforma_educativa
+CREATE DATABASE IF NOT EXISTS pwgrupo8_plataforma_educativa
   DEFAULT CHARACTER SET utf8mb4
   COLLATE utf8mb4_general_ci;
 
-USE plataforma_educativa;
+USE pwgrupo8_plataforma_educativa;
 
 CREATE TABLE IF NOT EXISTS usuarios (
   id INT(11) NOT NULL AUTO_INCREMENT,
