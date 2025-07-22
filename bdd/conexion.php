@@ -1,5 +1,5 @@
 <?php
-$host = "http://pwgrupo8.miuni.kids:2002/";
+$host = "localhost";
 $usuario = "pwgrupo8_estudiante"; // cambia esto si usas otro usuario
 $contrasena = "Pwgrupo8-8";  // pon tu contraseña si la tienes
 $base_datos = "pwgrupo8_plataforma_educativa";
