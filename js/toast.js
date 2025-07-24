@@ -1,25 +1,41 @@
+
 document.addEventListener("DOMContentLoaded", () => {
-  // Mostrar toast de error
+  // Mostrar modal de error
   const toastError = document.getElementById("toast-error");
   if (toastError) {
-    toastError.classList.add("show");
-    setTimeout(() => {
-      toastError.classList.remove("show");
-    }, 3000);
-
-    // Limpiar campos de contraseña
+    mostrarVentanaMensaje(toastError.textContent, true);
     document.querySelector("input[name='contrasena']").value = "";
     document.querySelector("input[name='confirmar']").value = "";
   }
 
-  // Mostrar toast normal y redirigir
+  // Mostrar modal normal y redirigir
   const toast = document.getElementById("toast");
   if (toast) {
-    toast.classList.add("show");
-    setTimeout(() => {
-      toast.classList.remove("show");
+    mostrarVentanaMensaje(toast.textContent, false, () => {
       window.location.href = "menu.php";
-    }, 1000);
+    });
   }
 });
+
+function mostrarVentanaMensaje(mensaje, esError = false, callback = null) {
+  const overlay = document.createElement('div');
+  overlay.className = 'popup-overlay popup-abrir';
+  overlay.innerHTML = `
+    <div class="popup-content" style="max-width:340px;padding:32px 24px;">
+      <div style="font-size:1.25em;font-weight:bold;margin-bottom:12px;${esError ? 'color:#d32f2f;' : 'color:#333;'}">
+        ${esError ? 'Error' : 'Mensaje'}
+      </div>
+      <div style="font-size:1.1em;margin-bottom:18px;">${mensaje}</div>
+      <button class="btn-cerrar-popup" style="background:#1976d2;color:#fff;border:none;border-radius:8px;padding:8px 24px;font-size:1em;cursor:pointer;">Aceptar</button>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  overlay.querySelector('.btn-cerrar-popup').addEventListener('click', () => {
+    overlay.classList.add('popup-cerrar');
+    setTimeout(() => {
+      overlay.remove();
+      if (callback) callback();
+    }, 350);
+  });
+}
 

@@ -342,7 +342,11 @@ input {
   position: fixed; /* Se mantiene en el mismo lugar al hacer scroll */
   left: 0;
   top: 0;
+  box-sizing: border-box;
+  z-index: 1001;
 }
+
+
 
 .navbar-left {
   display: flex;
@@ -375,6 +379,48 @@ input {
   background-image: url('../img/BG.png');
   background-size: cover;
   background-position: center;
+  margin-left: 220px; /* Deja espacio para el navbar fijo */
+  transition: margin-left 0.3s;
+}
+@media (max-width: 900px) {
+  .navbar {
+    position: static;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 10px;
+  }
+  .body-menu {
+    margin-left: 0;
+    padding-top: 80px;
+  }
+  .navbar-left, .navbar-right {
+    flex-direction: row;
+    width: auto;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    width: 100%;
+    padding: 8px 4px;
+    font-size: 16px;
+  }
+  .body-menu {
+    margin-left: 0;
+    padding-top: 120px;
+  }
+  .navbar-left, .navbar-right {
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
 }
 
 .contenedor-menu {
@@ -575,7 +621,7 @@ input {
   border: 2px solid #2196F3;
 }
 .popup-content button.btn-reiniciar-digitos {
-  background-image: url("../img/Refresh-numeros.png");  
+  background-image: url("../img/Validar.png");  
   background-size: 64px 64px;
   background-repeat: no-repeat;
   background-position: center;
@@ -706,3 +752,22 @@ input {
       from { opacity: 0; transform: scale(0.95);}
       to { opacity: 1; transform: scale(1);}
     }
+    .body-form {
+  position: relative;
+}
+
+.contenedor-recuperar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -40px; /* Ajusta según qué tan arriba lo quieres */
+}
+
+.titulo-recuperar {
+  font-size: 2.8em;
+  font-weight: bold;
+  color: white;
+  font-family: 'comic sans ms', sans-serif;
+  margin-bottom: 20px;
+  text-align: center;
+}

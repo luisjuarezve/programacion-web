@@ -25,24 +25,61 @@
   z-index: 1000;
 }
 .popup-content {
-  background: transparent;
-  background-image: url('../img/popup.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 12px;
-  width: 500px;
-  height: 630px;
+  background: #fff !important;
+  border-radius: 18px;
+  width: 340px;
+  min-height: 120px;
+  max-width: 90vw;
   position: relative;
   text-align: center;
+  font-size: 1.12em;
+  box-shadow: 0 6px 32px #0003;
+  padding: 32px 24px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Fondo blanco para toda la carta de la operación */
+.ejercicio {
+  background: #fff !important;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px #0001;
 }
 
 /* Estilos de la resta vertical */
 .resta-vertical {
-  font-size: 1.5em;
+  font-size: 42px;
   margin: 18px 0 0 0;
 }
+.resta-vertical .minuendo,
 .resta-vertical .sustraendo {
-  margin-left: 18px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+  letter-spacing: 0;
+}
+.resta-vertical .minuendo span,
+.resta-vertical .sustraendo span {
+  display: inline-block;
+  width: 60px;
+  text-align: center;
+  margin-right: 18px;
+}
+.resta-vertical .minuendo span:last-child,
+.resta-vertical .sustraendo span:last-child {
+  margin-right: 0;
+}
+.resta-vertical .minuendo span:last-child,
+.resta-vertical .sustraendo span:last-child {
+  margin-right: 0;
+}
+.resta-vertical .sustraendo {
+  /* Sin margen para alinear con los inputs */
 }
 .resta-vertical .linea {
   border-bottom: 2px solid #333;
@@ -52,14 +89,42 @@
   margin-right: auto;
 }
 .resta-vertical input[type="number"] {
-  font-size: 1.2em;
-  padding: 4px 10px;
+  font-size: 48px;
+  padding: 4px 0;
   margin-top: 8px;
-  width: 90px;
-  border-radius: 6px;
-  border: 1px solid #bbb;
+  width: 60px;
+  height: 54px;
+  border-radius: 8px;
+  border: 1.5px solid #bbb;
   outline: none;
   text-align: center;
+  vertical-align: middle;
+  background: #fff;
+  box-shadow: 0 1px 6px #0001;
+}
+/* Ajustar los dígitos para que coincidan con los inputs */
+.digitos-respuesta {
+  display: flex;
+  gap: 0;
+  justify-content: center;
+  margin-top: 10px;
+}
+.digito {
+  display: inline-flex;
+  width: 60px;
+  height: 54px;
+  font-size: 48px;
+  font-family: monospace;
+  background: #e3e3e3;
+  color: #222;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  border: 2px solid #bbb;
+  transition: background 0.15s, border 0.15s;
+  margin: 0;
 }
 
 /* Botones del popup */
@@ -72,7 +137,7 @@
 
 /* Botón Validar */
 .popup-content button.btn-validar {
-  background-image: url("../img/Validar.png");
+  background-image: url("../img/Refrescar.png");
   background-size: 40px 40px;
   background-repeat: no-repeat;
   background-position: center;
@@ -87,7 +152,7 @@
 }
 .popup-content button.btn-validar:hover {
   animation: botBounce 0.3s ease-in-out;
-  background-image: url("../img/Validar.png");
+  background-image: url("../img/Refrescar.png");
   background-size: 40px 40px;
   background-repeat: no-repeat;
   background-position: center;
@@ -121,8 +186,4 @@
 
 
 
-/* Feedback correcto/incorrecto */
-#feedback {
-  font-size: 1.1em;
-  min-height: 24px;
-}
+/* Eliminar estilos antiguos de feedback y error, los mensajes ahora usan el nuevo popup */

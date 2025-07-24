@@ -140,13 +140,14 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="popup-content">
       <h3>Resuelve la resta:</h3>
       <div class="resta-vertical">
-        <div>${a.toString().padStart(3, '0')}</div>
-        <div class="sustraendo">${b.toString().padStart(3, '0')}</div>
+        <div>${a.toString().padStart(4, '0')}</div>
+        <div class="sustraendo">${b.toString().padStart(4, '0')}</div>
         <div class="linea"></div>
         <div class="digitos-respuesta" style="display:flex;gap:8px;justify-content:center;margin-top:10px;">
           <span class="digito" data-pos="0">0</span>
           <span class="digito" data-pos="1">0</span>
           <span class="digito" data-pos="2">0</span>
+          <span class="digito" data-pos="3">0</span>
         </div>
         <button class="btn-reiniciar-digitos" style="margin-top:10px;"></button>
       </div>
@@ -173,12 +174,16 @@ document.addEventListener('DOMContentLoaded', () => {
         span.textContent = val;
       });
     });
-    btnReiniciarDigitos.addEventListener('click', () => {
+
+    // Ahora el botón de validar reinicia los números y quita el estilo de error
+    overlay.querySelector('.btn-validar').addEventListener('click', () => {
       digitos.forEach(span => span.textContent = '0');
+      feedback.classList.remove('incorrecto');
     });
 
-    overlay.querySelector('.btn-validar').addEventListener('click', () => {
-      // Obtener el número formado por los 3 dígitos
+    // Ahora el botón de reiniciar valida la respuesta
+    btnReiniciarDigitos.addEventListener('click', () => {
+      // Obtener el número formado por los 4 dígitos
       const respuestaUsuario = parseInt(digitos.map(d => d.textContent).join(''));
       if (respuestaUsuario === resultadoCorrecto) {
         feedback.textContent = '✅ ¡Correcto!';
@@ -221,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         // No guardar respuestas incorrectas, solo mostrar feedback
         feedback.textContent = '❌ Incorrecto. Intenta de nuevo.';
-        feedback.style.color = 'red';
+        feedback.classList.add('incorrecto');
       }
     });
 

@@ -41,13 +41,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $usuario_id) {
     if (strlen($contrasena) < 6) {
         $alerta_js = "<script>
             window.onload = () => {
-                mostrarModal('La contraseña debe tener al menos 6 caracteres');
+                mostrarVentanaMensaje('La contraseña debe tener al menos 6 caracteres', true);
             };
         </script>";
     } elseif ($contrasena !== $confirmar) {
         $alerta_js = "<script>
             window.onload = () => {
-                mostrarModal('Las contraseñas no coinciden');
+                mostrarVentanaMensaje('Las contraseñas no coinciden', true);
             };
         </script>";
     } else {
@@ -62,14 +62,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $usuario_id) {
 
             $alerta_js = "<script>
                 window.onload = () => {
-                    mostrarModal('¡Contraseña actualizada correctamente!');
+                    mostrarVentanaMensaje('¡Contraseña actualizada correctamente!', false, () => {
+                        window.location.href = 'index.php';
+                    });
                 };
             </script>";
             $exito = true;
         } else {
             $alerta_js = "<script>
                 window.onload = () => {
-                    mostrarModal('Hubo un error al actualizar la contraseña');
+                    mostrarVentanaMensaje('Hubo un error al actualizar la contraseña', true);
                 };
             </script>";
         }
