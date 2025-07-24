@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'bdd/conexion.php';
+require_once '../bdd/conexion.php';
 
 if (!isset($_SESSION['usuario_id'])) {
     http_response_code(401);

@@ -17,6 +17,10 @@ body {
 }
 
 /* General Styles */
+a {
+  text-decoration: none;
+}
+
 .body-form {
   display: flex;
   background-image: url('../img/BG.png');
@@ -29,16 +33,15 @@ body {
 }
 
 .formulario-login {
-  background-image: url('../img/formulario.png');
-  background-position: center;
-  background-size: 450px 580px;
-  padding: 265px 60px 20px 60px;
+  background-color: rgba(10, 59, 6, 0.6);
+  background-size: 450px 380px;
+  padding: 80px 60px 20px 60px;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 450px;
-  height: 580px;
+  height: 380px;
 }
 
 input {
@@ -74,16 +77,16 @@ input {
 
 /* Formulario registro */
 .formulario-registro {
-  background-image: url('../img/formulario\ registro.png');
+  background-color: rgba(10, 59, 6, 0.6);
   background-position: center;
   background-size: 450px 550px;
-  padding: 220px 60px 20px 60px;
+  padding: 120px 60px 20px 60px;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   gap: 6px;
   width: 450px;
-  height: 550px;
+  height: 450px;
 }
 
 .formulario-registro .center {
@@ -112,16 +115,15 @@ input {
 
 /* Formulario recuperar */
 .formulario-recuperar {
-  background-image: url('../img/Recuperar.png');
+  background-color: rgba(10, 59, 6, 0.6);
   background-position: center;
-  background-size: 450px 420px;
-  padding: 205px 60px 20px 60px;
+  padding: 100px 60px 20px 60px;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 450px;
-  height: 420px;
+  height: 300px;
 }
 
 .button-regresar {
@@ -326,15 +328,38 @@ input {
 
 /* Navbar styles */
 .navbar {
-  background-color: #f53b82;
+  background-color: #015c15b4;
   color: white;
   display: flex;
+  flex-direction: column; /* Apila elementos verticalmente */
+  align-items: flex-start; /* Alinea al inicio del eje horizontal */
   justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
+  padding: 20px;
+  width: 220px; /* Ancho fijo para el menú lateral */
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
   font-family: 'Arial', sans-serif;
   font-size: 18px;
+  position: fixed; /* Se mantiene en el mismo lugar al hacer scroll */
+  left: 0;
+  top: 0;
 }
+
+.navbar-left {
+  display: flex;
+  flex-direction: column; /* Apila elementos verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+.navbar-right {
+  display: flex;
+  flex-direction: column; /* Apila elementos verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  width: 100%; /* Ocupa todo el ancho disponible */
+}
+
 
 .cerrar-sesion {
   background-color: #f44336;
@@ -592,8 +617,92 @@ input {
   min-width: 40px; /* Ajusta este valor al ancho real de tus botones */
 }
 .paginacion-btn:empty {
-  min-width: 40px; /* Asegura el espacio aunque esté vacío */
+  min-width: 40px; /* Asegura que los botones vacíos tengan un ancho mínimo */
 }
 .paginacion-reiniciar {
   flex: 0 0 auto;
 }
+/* modal de error en recuperar contraseña */
+.modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .modal-contenido {
+      background: #fff;
+      padding: 30px 24px 18px 24px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 4px 24px #0002;
+      min-width: 280px;
+      animation: aparecer 0.3s ease;
+    }
+    .modal-contenido p {
+      font-size: 1.15em;
+      margin-bottom: 18px;
+      color: #333;
+    }
+    .modal-contenido button {
+      background: #4F88FF;
+      color: #fff;
+      border: none;
+      padding: 8px 22px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .modal-contenido button:hover {
+      background: #3466c2;
+    }
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.95);}
+      to { opacity: 1; transform: scale(1);}
+    }
+
+    .modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .modal-contenido {
+      background: #fff;
+      padding: 30px 24px 18px 24px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 4px 24px #0002;
+      min-width: 280px;
+      animation: aparecer 0.3s ease;
+    }
+    .modal-contenido p {
+      font-size: 1.15em;
+      margin-bottom: 18px;
+      color: #333;
+    }
+    .modal-contenido button {
+      background: #4F88FF;
+      color: #fff;
+      border: none;
+      padding: 8px 22px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .modal-contenido button:hover {
+      background: #3466c2;
+    }
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.95);}
+      to { opacity: 1; transform: scale(1);}
+    }

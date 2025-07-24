@@ -1,5 +1,5 @@
 <?php
-require 'loguear.php';
+require 'consultas/loguear.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -22,16 +22,16 @@ require 'loguear.php';
     <input type="password" name="contrasena" placeholder="Contraseña" required>
     <!-- 🔑 Enlace para recuperación de contraseña -->
     <p style="text-align: right; margin: 5px 0 5px 0;">
-      <a href="recuperar_contrasena.php" style="color: #4F88FF; font-weight: bold; font-size: 0.9em;">
-        ¿Olvidaste tu contraseña?
+      <a href="formulario_recuperar_contrasena.php" style="color: #4cd137; font-weight: bold; font-size: 0.9em;">
+        ¿Se te olvido la contraseña?
       </a>
     </p>
     <button class="button-submit" type="submit">Ingresar</button>
     <!-- 👤 Enlace de registro justo debajo del botón -->
-    <p style="text-align: center; margin-top: 5px;">
-      ¿No tienes una cuenta?
-      <a href="formulario_registro.php" style="color: #4F88FF; font-weight: bold;">
-        Regístrate aquí
+    <p style="text-align: center; margin-top: 5px; color: #fff;">
+      ¿Para crearte una cuenta? 
+      <a href="formulario_registro.php" style="color: #4cd137; font-weight: bold;">
+        Presiona aquí
       </a>
     </p>
   </form>

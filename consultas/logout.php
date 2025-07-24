@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'bdd/conexion.php';
+require_once '../bdd/conexion.php';
 
 if (isset($_SESSION['usuario_id'])) {
     $usuario_id = $_SESSION['usuario_id'];
@@ -26,6 +26,6 @@ session_destroy();
 session_start();
 $_SESSION['logout_success'] = true;
 
-header("Location: index.php");
+header("Location: ../index.php");
 exit;
 ?>

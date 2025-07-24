@@ -23,12 +23,11 @@
 
 <body class="body-menu">
   <header class="navbar">
-    <div class="navbar-left">👋 Bienvenido, <?= htmlspecialchars($nombre_usuario); ?></div>
+    <div class="navbar-left">¡Bienvenido, <?= htmlspecialchars($nombre_usuario); ?>!</div>
     <div class="navbar-right">
-      <form method="POST" action="logout.php" id="logoutForm">
-        <!-- Eliminado input de nivel_desbloqueado, ya no se usan niveles -->
+      <form method="POST" action="consultas/logout.php" id="logoutForm">
         <input type="hidden" name="respuestas" id="respuestasInput">
-        <button type="submit" class="cerrar-sesion">Cerrar sesión</button>
+        <button type="submit" class="cerrar-sesion">Cerrar</button>
       </form>
     </div>
   </header>

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Al cargar el menú, mostrar ejercicios directamente (sin niveles)
   // Recuperar respuestas guardadas del backend antes de mostrar ejercicios
-  fetch('recuperar_respuestas.php')
+  fetch('consultas/recuperar_respuestas.php')
     .then(res => res.json())
     .then(data => {
       window.respuestasUsuario = Array.isArray(data.respuestas) ? data.respuestas : [];
@@ -16,16 +16,16 @@ document.addEventListener('DOMContentLoaded', () => {
     paginaActual = pagina;
     // Si no hay preguntas guardadas, generarlas y guardarlas en la base de datos
     let preguntasGuardadas = window.respuestasUsuario || [];
-    if (preguntasGuardadas.length < 24 || reiniciar) {
+    if (preguntasGuardadas.length < 8 || reiniciar) {
       ejerciciosActuales = [];
-      for (let i = 1; i <= 24; i++) {
-        let a = Math.floor(Math.random() * 900) + 100; // 100–999
-        let b = Math.floor(Math.random() * (a - 100)) + 100; // 100 hasta a-1
+      for (let i = 1; i <= 8; i++) {
+        let a = Math.floor(Math.random() * 90000) + 10000; // 10000–99999
+        let b = Math.floor(Math.random() * (a - 10000)) + 10000; // 10000 hasta a-1
         ejerciciosActuales.push({ a, b, resuelto: false, pregunta_id: i });
       }
 
       // Guardar todas las preguntas generadas en la base de datos como incorrectas inicialmente
-      fetch('guardar_respuestas.php', {
+      fetch('consultas/guardar_respuestas.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -96,9 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Cambiar la generación de paginacionHTML para centrar el botón reiniciar
       let paginacionHTML = `
       <div class="paginacion-flex">
-        <div class="paginacion-btn paginacion-anterior">${paginaActual > 0 ? '<button class="btn-anterior"></button>' : ''}</div>
         <div class="paginacion-btn paginacion-reiniciar"><button class="btn-reiniciar"></button></div>
-        <div class="paginacion-btn paginacion-siguiente">${paginaActual < 2 ? '<button class="btn-siguiente"></button>' : ''}</div>
       </div>
     `;
       contenedor.innerHTML = `
@@ -117,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       document.querySelector('.btn-reiniciar').addEventListener('click', () => {
         // Eliminar todas las respuestas del usuario en el backend
-        fetch('reiniciar_nivel.php', {
+        fetch('consultas/reiniciar_nivel.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({})
@@ -128,18 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
 
-      const btnSiguiente = document.querySelector('.btn-siguiente');
-      if (btnSiguiente) {
-        btnSiguiente.addEventListener('click', () => {
-          mostrarEjercicios(false, paginaActual + 1);
-        });
-      }
-      const btnAnterior = document.querySelector('.btn-anterior');
-      if (btnAnterior) {
-        btnAnterior.addEventListener('click', () => {
-          mostrarEjercicios(false, paginaActual - 1);
-        });
-      }
     }
   }
 
@@ -203,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Eliminar cualquier respuesta previa para esa pregunta
             window.respuestasUsuario = window.respuestasUsuario.filter(r => r.pregunta_id !== ej.pregunta_id);
             // Guardar la respuesta correcta
-            fetch('guardar_respuestas.php', {
+            fetch('consultas/guardar_respuestas.php', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({

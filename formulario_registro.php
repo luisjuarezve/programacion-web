@@ -1,5 +1,5 @@
 <?php
-require 'registro.php';
+require 'consultas/registro.php';
 ?>
 
 <!DOCTYPE html>

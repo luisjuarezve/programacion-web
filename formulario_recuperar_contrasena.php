@@ -160,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="email" name="email" placeholder="Ingresa tu correo" required>
     <button class="button-submit" type="submit">Enviar instrucciones</button>
     <p style="text-align: center; margin-top: 10px;">
-      <a href="index.php" style="color: #4F88FF; font-weight: bold;">
+      <a href="index.php" style="color: #4cd137; font-weight: bold;">
         ← Volver al inicio de sesión
       </a>
     </p>
