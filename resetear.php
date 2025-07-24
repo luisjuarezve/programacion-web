@@ -10,7 +10,6 @@ require 'consultas/reset.php';
   <style>
     .body-form {
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       background-image: url('../img/BG.png');
@@ -19,37 +18,35 @@ require 'consultas/reset.php';
       height: 100vh;
     }
 
-    .contenedor-reset {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: -40px;
-    }
-
-    .titulo-reset {
-      font-size: 2.8em;
-      font-weight: bold;
-      color: white;
-      font-family: 'comic sans ms', sans-serif;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .formulario-recuperar {
+    .formulario-reset {
       background-color: rgba(10, 59, 6, 0.6);
-      padding: 100px 60px 20px 60px;
+      padding: 40px 60px;
       border-radius: 12px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      width: 450px;
-      height: 300px;
+      align-items: center;
+      gap: 12px;
+      width: 500px; /* ⬅️ Más ancho para evitar cortes */
+      height: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    .titulo-reset {
+      font-size: 2.4em; /* ⬅️ Ajustado para que sea una sola línea */
+      font-weight: bold;
+      color: white;
+      font-family: 'comic sans ms', sans-serif;
+      text-align: center;
+      margin-bottom: 20px;
+      white-space: nowrap; /* ⬅️ Evita salto de línea */
     }
 
     input {
-      padding: 10px;
+      width: 100%;
+      padding: 12px;
       border: 2px solid #CCE0FF;
       border-radius: 6px;
+      font-size: 1em;
     }
 
     .button-submit {
@@ -63,37 +60,47 @@ require 'consultas/reset.php';
       padding: 10px;
       cursor: pointer;
       font-family: 'comic sans ms', sans-serif;
+      font-size: 1em;
     }
 
     .button-submit:hover {
       background-image: url('../img/btn hover.png');
       background-size: 200px 40px;
-      margin-bottom: -1px;
-      margin-right: 2px;
       padding: 9px;
       font-size: 18px;
+      margin-bottom: -1px;
+      margin-right: 2px;
+    }
+
+    .volver {
+      text-align: center;
+      font-size: 0.9em;
+      margin-top: 10px;
+    }
+
+    .volver a {
+      color: #4F88FF;
+      font-weight: bold;
+      text-decoration: none;
     }
   </style>
 </head>
 <body class="body-form">
   <?= $alerta_js ?>
 
-  <div class="contenedor-reset">
-    <h1 class="titulo-reset">🔐 Restablecer contraseña</h1>
+  <?php if ($usuario_id && !$exito): ?>
+  <form method="POST" class="formulario-reset">
+    <h1 class="titulo-reset">Restablecer contraseña</h1>
 
-    <?php if ($usuario_id && !$exito): ?>
-    <form method="POST" class="formulario-recuperar">
-      <input type="password" name="contrasena" placeholder="Nueva contraseña" required>
-      <input type="password" name="confirmar" placeholder="Confirmar contraseña" required>
-      <button class="button-submit" type="submit">Restablecer contraseña</button>
-      <p style="text-align: center; margin-top: 10px;">
-        <a href="index.php" style="color: #4F88FF; font-weight: bold;">
-          ← Volver al inicio de sesión
-        </a>
-      </p>
-    </form>
-    <?php endif; ?>
-  </div>
+    <input type="password" name="contrasena" placeholder="Nueva contraseña" required>
+    <input type="password" name="confirmar" placeholder="Confirmar contraseña" required>
+    <button class="button-submit" type="submit">Restablecer contraseña</button>
+
+    <div class="volver">
+      <a href="index.php">← Volver al inicio de sesión</a>
+    </div>
+  </form>
+  <?php endif; ?>
 
   <script>
     function mostrarVentanaMensaje(mensaje, esError = false, callback = null) {

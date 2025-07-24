@@ -10,8 +10,7 @@ require 'libs/PHPMailer/src/Exception.php';
 $token_generado = '';
 $alerta_js = '';
 
-function generarToken($longitud = 32)
-{
+function generarToken($longitud = 32) {
   return bin2hex(random_bytes($longitud / 2));
 }
 
@@ -34,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $stmt->execute();
 
       $mail = new PHPMailer(true);
-
       try {
         $mail->SMTPDebug = 0;
         $mail->isSMTP();
@@ -94,47 +92,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <style>
     .body-form {
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       background-image: url('../img/BG.png');
       background-size: cover;
       background-position: center;
       height: 100vh;
-      color: #333;
-    }
-
-    .contenedor-recuperar {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: -40px;
-    }
-
-    .titulo-recuperar {
-      font-size: 2.8em;
-      font-weight: bold;
-      color: white;
-      font-family: 'comic sans ms', sans-serif;
-      margin-bottom: 20px;
-      text-align: center;
     }
 
     .formulario-recuperar {
       background-color: rgba(10, 59, 6, 0.6);
-      padding: 100px 60px 20px 60px;
+      padding: 40px 60px;
       border-radius: 12px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      width: 450px;
-      height: 300px;
+      align-items: center;
+      gap: 12px;
+      width: 500px; /* ⬅️ Más ancho para el título */
+      height: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    .titulo-recuperar {
+      font-size: 2.4em; /* ⬅️ Más pequeño para que entre en una línea */
+      font-weight: bold;
+      color: white;
+      font-family: 'comic sans ms', sans-serif;
+      text-align: center;
+      margin-bottom: 20px;
+      white-space: nowrap; /* ⬅️ Impide quiebre de línea */
     }
 
     input {
-      padding: 10px;
+      width: 100%;
+      padding: 12px;
       border: 2px solid #CCE0FF;
       border-radius: 6px;
+      font-size: 1em;
     }
 
     .button-submit {
@@ -148,34 +142,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       padding: 10px;
       cursor: pointer;
       font-family: 'comic sans ms', sans-serif;
+      font-size: 1em;
     }
 
     .button-submit:hover {
       background-image: url('../img/btn hover.png');
       background-size: 200px 40px;
-      margin-bottom: -1px;
-      margin-right: 2px;
       padding: 9px;
       font-size: 18px;
+      margin-bottom: -1px;
+      margin-right: 2px;
+    }
+
+    .volver {
+      text-align: center;
+      font-size: 0.9em;
+      margin-top: 10px;
+    }
+
+    .volver a {
+      color: #4cd137;
+      font-weight: bold;
+      text-decoration: none;
     }
   </style>
 </head>
 <body class="body-form">
   <?= $alerta_js ?>
 
-  <div class="contenedor-recuperar">
+  <form method="POST" class="formulario-recuperar">
     <h1 class="titulo-recuperar">Recuperar contraseña</h1>
 
-    <form method="POST" class="formulario-recuperar">
-      <input type="email" name="email" placeholder="Ingresa tu correo" required>
-      <button class="button-submit" type="submit">Enviar instrucciones</button>
-      <p style="text-align: center; margin-top: 10px;">
-        <a href="index.php" style="color: #4cd137; font-weight: bold;">
-          ← Volver al inicio de sesión
-        </a>
-      </p>
-    </form>
-  </div>
+    <input type="email" name="email" placeholder="Ingresa tu correo" required>
+    <button class="button-submit" type="submit">Enviar instrucciones</button>
+
+    <div class="volver">
+      <a href="index.php">← Volver al inicio de sesión</a>
+    </div>
+  </form>
 
   <script>
     function mostrarVentanaMensaje(mensaje, esError = false, callback = null) {

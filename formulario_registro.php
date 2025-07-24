@@ -20,11 +20,17 @@ require 'consultas/registro.php';
       color: #333;
     }
 
-    .contenedor-registro {
+    .formulario-registro {
+      background-color: rgba(10, 59, 6, 0.6);
+      padding: 40px 60px 40px 60px; /* ⬅️ Espacio vertical equilibrado */
+      border-radius: 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: -40px;
+      gap: 12px;
+      width: 460px;
+      height: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
     }
 
     .titulo-registro {
@@ -36,27 +42,16 @@ require 'consultas/registro.php';
       text-align: center;
     }
 
-    .formulario-registro {
-      background-color: rgba(10, 59, 6, 0.6);
-      background-position: center;
-      background-size: 450px 550px;
-      padding: 120px 60px 20px 60px;
-      border-radius: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      width: 450px;
-      height: 450px;
-    }
-
     input {
-      padding: 10px;
+      width: 100%;
+      padding: 12px;
       border: 2px solid #CCE0FF;
       border-radius: 6px;
+      font-size: 1em;
     }
 
     .center {
-      margin-top: 10px;
+      margin-top: 15px;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -69,10 +64,6 @@ require 'consultas/registro.php';
       height: 40px;
       font-size: 18px;
       background-size: 150px 40px;
-    }
-
-    .btn-small:hover {
-      margin-right: 0;
     }
 
     .button-submit {
@@ -111,21 +102,19 @@ require 'consultas/registro.php';
 <body class="body-form">
   <?php if (!empty($mensaje)) echo $mensaje; ?>
 
-  <div class="contenedor-registro">
+  <form method="POST" class="formulario-registro">
     <h1 class="titulo-registro">Regístrate</h1>
 
-    <form method="POST" class="formulario-registro">
-      <input type="text" name="nombre" placeholder="Nombre completo" value="<?php echo htmlspecialchars($nombre); ?>" required>
-      <input type="email" name="email" placeholder="Correo electrónico" value="<?php echo htmlspecialchars($email); ?>" required>
-      <input type="password" name="contrasena" placeholder="Contraseña" required>
-      <input type="password" name="confirmar" placeholder="Confirmar contraseña" required>
+    <input type="text" name="nombre" placeholder="Nombre completo" value="<?php echo htmlspecialchars($nombre); ?>" required>
+    <input type="email" name="email" placeholder="Correo electrónico" value="<?php echo htmlspecialchars($email); ?>" required>
+    <input type="password" name="contrasena" placeholder="Contraseña" required>
+    <input type="password" name="confirmar" placeholder="Confirmar contraseña" required>
 
-      <div class="center">
-        <button class="button-submit btn-small" type="submit">Registrarse</button>
-        <a href="index.php" class="button-regresar btn-small">Volver</a>
-      </div>
-    </form>
-  </div>
+    <div class="center">
+      <button class="button-submit btn-small" type="submit">Registrarse</button>
+      <a href="index.php" class="button-regresar btn-small">Volver</a>
+    </div>
+  </form>
 
   <script src="js/toast.js"></script>
 </body>

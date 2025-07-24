@@ -1,7 +1,6 @@
 <?php
 require 'bdd/conexion.php';
 $alerta_js = '';
-$codigo_valido = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $codigo = trim($_POST['codigo'] ?? '');
@@ -43,47 +42,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <style>
     .body-form {
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       background-image: url('../img/BG.png');
       background-size: cover;
       background-position: center;
       height: 100vh;
-      color: #333;
     }
 
-    .contenedor-verificacion {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: -40px;
-    }
-
-    .titulo-verificacion {
-      font-size: 2.8em;
-      font-weight: bold;
-      color: white;
-      font-family: 'comic sans ms', sans-serif;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .formulario-recuperar {
+    .formulario-verificar {
       background-color: rgba(10, 59, 6, 0.6);
-      padding: 100px 60px 20px 60px;
+      padding: 40px 60px;
       border-radius: 12px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      width: 450px;
-      height: 300px;
+      align-items: center;
+      gap: 12px;
+      width: 500px; /* ⬅️ Más ancho para que el título no se parta */
+      height: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    .titulo-verificacion {
+      font-size: 2.4em; /* ⬅️ Más pequeño para que entre en una línea */
+      font-weight: bold;
+      color: white;
+      font-family: 'comic sans ms', sans-serif;
+      text-align: center;
+      margin-bottom: 20px;
+      white-space: nowrap; /* ⬅️ Impide que se parta en dos líneas */
     }
 
     input {
-      padding: 10px;
+      width: 100%;
+      padding: 12px;
       border: 2px solid #CCE0FF;
       border-radius: 6px;
+      font-size: 1em;
     }
 
     .button-submit {
@@ -97,34 +92,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       padding: 10px;
       cursor: pointer;
       font-family: 'comic sans ms', sans-serif;
+      font-size: 1em;
     }
 
     .button-submit:hover {
       background-image: url('../img/btn hover.png');
       background-size: 200px 40px;
-      margin-bottom: -1px;
-      margin-right: 2px;
       padding: 9px;
       font-size: 18px;
+      margin-bottom: -1px;
+      margin-right: 2px;
+    }
+
+    .volver {
+      text-align: center;
+      font-size: 0.9em;
+      margin-top: 10px;
+    }
+
+    .volver a {
+      color: #4F88FF;
+      font-weight: bold;
+      text-decoration: none;
     }
   </style>
 </head>
 <body class="body-form">
   <?= $alerta_js ?>
 
-  <div class="contenedor-verificacion">
+  <form method="POST" class="formulario-verificar">
     <h1 class="titulo-verificacion">Verificar código</h1>
 
-    <form method="POST" class="formulario-recuperar">
-      <input type="text" name="codigo" placeholder="Ingresa tu código mágico" required>
-      <button class="button-submit" type="submit">Validar código</button>
-      <p style="text-align: center; margin-top: 10px;">
-        <a href="formulario_recuperar_contrasena.php" style="color: #4F88FF; font-weight: bold;">
-          ← Volver a recuperación
-        </a>
-      </p>
-    </form>
-  </div>
+    <input type="text" name="codigo" placeholder="Ingresa tu código mágico" required>
+    <button class="button-submit" type="submit">Validar código</button>
+
+    <div class="volver">
+      <a href="formulario_recuperar_contrasena.php">← Volver a recuperación</a>
+    </div>
+  </form>
 
   <script>
     function mostrarVentanaMensaje(mensaje, esError = false, callback = null) {
