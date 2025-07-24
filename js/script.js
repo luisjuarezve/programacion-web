@@ -19,10 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (preguntasGuardadas.length < 8 || reiniciar) {
       ejerciciosActuales = [];
       for (let i = 1; i <= 8; i++) {
-        let a = Math.floor(Math.random() * 90000) + 10000; // 10000–99999
-        let b = Math.floor(Math.random() * (a - 10000)) + 10000; // 10000 hasta a-1
+        let a = Math.floor(Math.random() * 9000) + 1000; // 1000–9999
+        let b = Math.floor(Math.random() * (a - 1000)) + 1000; // 1000 hasta a-1
         ejerciciosActuales.push({ a, b, resuelto: false, pregunta_id: i });
       }
+
 
       // Guardar todas las preguntas generadas en la base de datos como incorrectas inicialmente
       fetch('consultas/guardar_respuestas.php', {
